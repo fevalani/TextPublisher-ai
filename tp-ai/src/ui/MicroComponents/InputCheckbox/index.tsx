@@ -28,19 +28,19 @@ export default function Checkbox({
 
   return (
     <div className="w-full flex flex-col gap-2">
-      <span>{title}</span>
       {listOptions.map((option, i) => (
         <div
           key={i}
           className="ml-2 cursor-pointer flex gap-2 items-center"
           onClick={(e) => {
-            e.preventDefault();
+            e.stopPropagation();
             handleCheckboxChange(option);
           }}
         >
           <input
             type="checkbox"
             value={option}
+            onChange={() => handleCheckboxChange(option)}
             checked={values.includes(option)}
           />
           {option}

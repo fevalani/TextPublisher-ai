@@ -2,6 +2,8 @@ import { useState } from "react";
 import Button from "../MicroComponents/Button";
 import InputRange from "../MicroComponents/InputRange";
 import Checkbox from "../MicroComponents/InputCheckbox";
+import ListToggleitem from "../MicroComponents/ListToggleItem";
+import SelectItems from "../MicroComponents/SelectItems";
 
 type SideBarProps = {
   openSideBar: boolean;
@@ -14,19 +16,33 @@ export default function SideBar({ openSideBar, setOpenSideBar }: SideBarProps) {
   const [phraseSize, setPhraseSize] = useState(50);
   const [punctuation, setPunctuation] = useState(50);
   const [perspective, setPerspective] = useState(50);
-  const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
+  const [styleOptions, setStyleOptions] = useState<string[]>([]);
   const [conectivity, setConectivity] = useState(50);
-  const [syntax, setSyntax] = useState(50);
-  const [coherence, setCoherence] = useState(50);
-  const [purpose, setPurpose] = useState(50);
-  const [originality, setOriginality] = useState(50);
-  const [consistency, setConsistency] = useState(50);
+  const [objective, setObjective] = useState("");
+  const [targetAudience, setTargetAudience] = useState<string[]>([]);
+  const [creativity, setCreativity] = useState(50);
+
+  function applyChanges() {
+    const data = {
+      voiceTone,
+      vocabulary,
+      phraseSize,
+      punctuation,
+      perspective,
+      styleOptions,
+      conectivity,
+      objective,
+      targetAudience,
+      creativity,
+    };
+    console.log(data);
+  }
 
   return (
     <section
       className={`${
-        openSideBar ? `flex flex-col` : `absolute -translate-x-96`
-      } md:w-96 w-screen h-full bg-gray-900 p-6 transition-all`}
+        openSideBar ? `flex flex-col` : `fixed -translate-x-96`
+      } md:w-96 w-screen h-screen bg-gray-900 p-4 transition-all overflow-y-scroll no-scrollbar`}
     >
       <div className={`w-full flex justify-between mb-6 items-center`}>
         Menu de opções
@@ -38,24 +54,27 @@ export default function SideBar({ openSideBar, setOpenSideBar }: SideBarProps) {
         </Button>
       </div>
       <div className={`w-full flex`}>
-        <ul className="w-full flex flex-col gap-8">
-          <InputRange
-            title="Tom de Voz"
-            value={voiceTone}
-            onClick={setVoiceTone}
-            sb1="Informal"
-            sb2="Formal"
-          />
-          <InputRange
-            title="Vocabulário"
-            value={vocabulary}
-            onClick={setVocabulary}
-            sb1="Simples"
-            sb2="Complexo"
-            type={1}
-          />
-          <li className="flex flex-col w-full gap-4">
-            Estrutura e Organização
+        <ul className="w-full flex flex-col gap-6">
+          <ListToggleitem>
+            <InputRange
+              title="Tom de Voz"
+              value={voiceTone}
+              onClick={setVoiceTone}
+              sb1="Informal"
+              sb2="Formal"
+            />
+          </ListToggleitem>
+          <ListToggleitem>
+            <InputRange
+              title="Vocabulário"
+              value={vocabulary}
+              onClick={setVocabulary}
+              sb1="Simples"
+              sb2="Complexo"
+              type={1}
+            />
+          </ListToggleitem>
+          <ListToggleitem>
             <InputRange
               title="Tamanho das Frases"
               value={phraseSize}
@@ -64,6 +83,8 @@ export default function SideBar({ openSideBar, setOpenSideBar }: SideBarProps) {
               sb2="Longas"
               type={2}
             />
+          </ListToggleitem>
+          <ListToggleitem>
             <InputRange
               title="Uso de pontuação"
               value={punctuation}
@@ -72,8 +93,8 @@ export default function SideBar({ openSideBar, setOpenSideBar }: SideBarProps) {
               sb2="Intenso"
               type={2}
             />
-          </li>
-          <li>
+          </ListToggleitem>
+          <ListToggleitem>
             <InputRange
               title="Perspectiva e Foco"
               value={perspective}
@@ -82,17 +103,16 @@ export default function SideBar({ openSideBar, setOpenSideBar }: SideBarProps) {
               sb2="Leitor"
               type={3}
             />
-          </li>
-          <li className="">
+          </ListToggleitem>
+          <ListToggleitem>
             <Checkbox
-              values={selectedOptions}
-              setValues={setSelectedOptions}
+              values={styleOptions}
+              setValues={setStyleOptions}
               title="Estilo Retórico"
               listOptions={["Metáfora", "Analogias", "Ironia", "Hipérbole"]}
             />
-          </li>
-          <li className="flex flex-col w-full gap-4">
-            Coerência e Coesão
+          </ListToggleitem>
+          <ListToggleitem>
             <InputRange
               title="Conectividade"
               value={conectivity}
@@ -101,21 +121,19 @@ export default function SideBar({ openSideBar, setOpenSideBar }: SideBarProps) {
               sb2="Muito Conectado"
               type={2}
             />
-          </li>
-          <li className="flex flex-col w-full gap-4">
-            Propósito e Público-Alvo
-            <div className="flex flex-col gap-2">
-              <label>Objetivo do Texto</label>
-              <select className="text-black">
-                <option value="inform">Informar</option>
-                <option value="entertain">Entreter</option>
-                <option value="persuade">Persuadir</option>
-                <option value="narrate">Narrar</option>
-              </select>
-            </div>
+          </ListToggleitem>
+          <ListToggleitem>
+            <SelectItems
+              title={"Objetivo do Texto"}
+              listOptions={["Informar", "Entreter", "Persuadir", "Narrar"]}
+              value={objective}
+              setValue={setObjective}
+            />
+          </ListToggleitem>
+          <ListToggleitem>
             <Checkbox
-              values={selectedOptions}
-              setValues={setSelectedOptions}
+              values={targetAudience}
+              setValues={setTargetAudience}
               title="Público-Alvo"
               listOptions={[
                 "Científico",
@@ -124,16 +142,21 @@ export default function SideBar({ openSideBar, setOpenSideBar }: SideBarProps) {
                 "Jovens",
               ]}
             />
-          </li>
-          <li>Originalidade e Criatividade</li>
-          <li>Consistência</li>
+          </ListToggleitem>
+          <ListToggleitem>
+            <InputRange
+              title="Criatividade"
+              value={creativity}
+              onClick={setCreativity}
+              sb1="Prático"
+              sb2="Criativo"
+              type={2}
+            />
+          </ListToggleitem>
         </ul>
       </div>
-      <div className={`w-full flex justify-end mb-6 text-green-300`}>
-        <Button
-          onClick={() => console.log("Aplicar")}
-          className={`text-green-300`}
-        >
+      <div className={`w-full flex justify-end my-6 text-green-300`}>
+        <Button onClick={applyChanges} className={`text-green-300`}>
           Aplicar
         </Button>
       </div>

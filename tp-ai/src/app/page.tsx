@@ -10,15 +10,19 @@ import { useState } from "react";
 
 export default function Home() {
   const [openSideBar, setOpenSideBar] = useState(false);
+
   return (
     <div className="flex">
-      <SideBar openSideBar={openSideBar} setOpenSideBar={setOpenSideBar}/>
-      <Main>
-          <section>
-            <OptionButton openSideBar={openSideBar} setOpenSideBar={setOpenSideBar}/>
-          </section>
-          <TextOutput />
-          <TextInput />
+      <SideBar openSideBar={openSideBar} setOpenSideBar={setOpenSideBar} />
+      <Main className={``}>
+        <section>
+          <OptionButton
+            openSideBar={openSideBar}
+            setOpenSideBar={setOpenSideBar}
+          />
+        </section>
+        <TextOutput />
+        <TextInput />
       </Main>
     </div>
   );
