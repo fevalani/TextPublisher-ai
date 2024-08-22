@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   description: "TextGen AI is a text generation for publishing content.",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;

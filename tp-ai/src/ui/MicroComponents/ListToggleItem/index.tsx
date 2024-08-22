@@ -37,9 +37,9 @@ const svgArrow = (open: boolean) => (
     viewBox="0 0 24 24"
     fill="none"
     stroke="currentColor"
-    stroke-width="1"
-    stroke-linecap="round"
-    stroke-linejoin="round"
+    strokeWidth="1"
+    strokeLinecap="round"
+    strokeLinejoin="round"
     className={`icon icon-tabler ${
       open ? "rotate-180" : "rotate-90"
     } icons-tabler-outline icon-tabler-arrow-badge-up transition-all`}

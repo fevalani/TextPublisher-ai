@@ -12,15 +12,16 @@ export default function Main({
   return (
     <main
       className={`${className} 
-                flex w-full h-screen flex-col items-start relative
-                justify-start md:p-24 gap-8 bg-universe bg-cover bg-red-500
+                flex w-full h-screen flex-col items-start
+                relative overflow-hidden
+                md:p-12 gap-8
                 p-6
                 `}
     >
       <Image
         src={universe}
         alt={"universe"}
-        className="opacity-25 -z-10 absolute top-0 left-0 object-fill w-full h-full"
+        className="opacity-80 -z-10 absolute top-0 left-0 object-fill w-full h-full"
       />
       {children}
     </main>

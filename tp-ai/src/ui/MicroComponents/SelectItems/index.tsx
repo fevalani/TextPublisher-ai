@@ -1,5 +1,5 @@
 type SelectitemsProps = {
-  title: string;
+  title?: string;
   listOptions: string[];
   value: string;
   setValue: (value: string) => void;
