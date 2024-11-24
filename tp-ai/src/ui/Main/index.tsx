@@ -18,11 +18,11 @@ export default function Main({
                 p-6
                 `}
     >
-      <Image
+      {/* <Image
         src={universe}
         alt={"universe"}
         className="opacity-80 -z-10 absolute top-0 left-0 object-fill w-full h-full"
-      />
+      /> */}
       {children}
     </main>
   );

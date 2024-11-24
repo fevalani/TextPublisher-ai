@@ -13,10 +13,10 @@ export default function Template({ children }: { children: React.ReactNode }) {
   const [openLogin, setOpenLogin] = useState(false);
 
   return (
-    <div className="flex overflow-hidden">
-      <SideBar openSideBar={openSideBar} setOpenSideBar={setOpenSideBar} />
-      <Main className={openSideBar ? "" : ""}>
-        <div className="flex justify-between w-full">
+    <div className="flex overflow-hidden w-full">
+      {/* <SideBar openSideBar={openSideBar} setOpenSideBar={setOpenSideBar} /> */}
+      <Main className={openSideBar ? "w-full" : "w-full"}>
+        {/* <div className="flex justify-between w-full">
           <section className="w-full gap-4 flex">
             <Button
               title="Personalidade"
@@ -48,10 +48,10 @@ export default function Template({ children }: { children: React.ReactNode }) {
           <section className="flex">
             <LoginButton openLogin={openLogin} setOpenLogin={setOpenLogin} />
           </section>
-        </div>
+        </div> */}
         {children}
       </Main>
-      <Login openLogin={openLogin} setOpenLogin={setOpenLogin} />
+      {/* <Login openLogin={openLogin} setOpenLogin={setOpenLogin} /> */}
     </div>
   );
 }
